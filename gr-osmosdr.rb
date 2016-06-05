@@ -8,10 +8,14 @@ class GrOsmosdr < Formula
   depends_on 'cmake' => :build
   depends_on 'gnuradio'
   depends_on 'librtlsdr'
+  depends_on 'swig'
+  depends_on 'homebrew/python/numpy'
+  depends_on 'homebrew/python/scipy'
+  depends_on 'homebrew/python/matplotlib'
 
   def install
     mkdir 'build' do
-      system 'cmake', '..', *std_cmake_args << "-DPYTHON_LIBRARY=#{python_path}/Frameworks/Python.framework/"
+      system 'cmake', '..', *std_cmake_args << "-DPYTHON_LIBRARY=#{python_path}/Frameworks/Python.framework/" << "-DENABLE_PYTHON=ON"
       system 'make'
       system 'make install'
     end
