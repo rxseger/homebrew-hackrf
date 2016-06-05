@@ -4,16 +4,19 @@ published: false
 
 # HackRF OSX Install
 
-This will walk you through getting HackRF to work on OSX. It is really just an adaptation of the awesome collection of [Homebrew](https://github.com/mxcl/homebrew) recipes from [Titanous](https://github.com/titanous/homebrew-gnuradio) for getting GNU Radio running on OSX.
+This will walk you through getting HackRF to work on OSX. It is really just an adaptation of the awesome collection of [Homebrew](https://github.com/mxcl/homebrew) recipes from [Titanous](https://github.com/titanous/homebrew-gnuradio) and [jjeising](https://github.com/jjeising/homebrew-hackrf) for getting GNU Radio running on OSX.
+
+Note: [homebrew-core](https://github.com/homebrew/homebrew-core) now includes the gnuradio, librtlsdr, and hackrf formulas.
+This repository only includes gqrx, gr-baz, and gr-osmosdr.
 
 ## Installation
 
-These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is probably a good idea to make sure all OSX updates have been applied and Xcode is up to date. Also, probably good to install the Xcode command line apps as explained over at[Stackoverflow](http://stackoverflow.com/a/932932).
+These steps have been tested on El Capitan 10.11.5 with Xcode 7.3.1. It is probably a good idea to make sure all OSX updates have been applied and Xcode is up to date. Also, probably good to install the Xcode command line apps as explained over at [Stackoverflow](http://stackoverflow.com/a/932932).
 
 - Install [Homebrew](http://brew.sh/) if you haven't already
 
   ```sh
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   ```
   or if you already have it installed, update and upgrade everything:
   
@@ -35,37 +38,23 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
   export PATH=/usr/local/sbin:/usr/local/bin:$PATH
   ```
 
-- Install the python package prerequisites
+- Install the prerequisite python package (TODO: move to homebrew dependency)
 
   ```sh
-  brew install python gcc swig
+  pip install Cheetah
   ```
 
-- Install the prerequisite python packages
-
-  ```sh
-  pip install numpy==1.5.1 Cheetah lxml
-  pip install https://github.com/scipy/scipy/archive/v0.12.0.tar.gz
-  export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig" 
-  pip install https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
-  ```
-
-- Install `wxmac` 2.9 with python bindings
-
-  ```sh
-  brew install wxmac --python
-  ```
 
 - Install gnuradio 
 
   ```sh
-  brew tap robotastic/homebrew-hackrf
-  brew install gnuradio --with-qt
+  brew install gnuradio
   ```
-- Install HackRF Libraries
+- Install HackRF and RTL-SDR libraries
 
   ```sh
   brew install hackrf
+  brew install librtlsdr
   ```
 
 - Create the `~/.gnuradio/config.conf` config file for custom block support and add this into it
@@ -78,7 +67,8 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
 - Install HackRF & RTL-SDR related blocks
 
   ```sh
-  brew install rtlsdr gr-osmosdr gr-baz --HEAD
+  brew tap rxseger/homebrew-hackrf
+  brew install gr-osmosdr gr-baz --HEAD
   ```
 - If you want a graphic interface to play with your HackRF, GQRX is great
   To install it:
@@ -93,7 +83,7 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
   gqrx
   ```
   
-  And then configure it to use the HackRF. Probably best to start the sample rate at 1000000 until you know how much your system can handle.
+  And then configure it to use the HackRF. Probably best to start the sample rate at 10e6 until you know how much your system can handle.
   
 **Congratulations!!**
 
@@ -103,25 +93,6 @@ Everything should now be working. It is time to give it a try! Below are some of
 gnuradio-companion
 osmocom_fft -a hackrf
 ```
-
-##Troubleshooting
-
-- **Matplotlib**
-
-  If you get the following type of errors installing matplotlib:
-
-  > error: expected identifier or '(' before '^' token
-    
-  Try the following:
-      
-  ```sh
-  export CC=clang
-  export CXX=clang++
-  export LDFLAGS="-L/usr/X11/lib"
-  export CFLAGS="-I/usr/X11/include -I/usr/X11/include/freetype2"
-  ```
-      
-  From [Stackoverflow](http://stackoverflow.com/questions/12363557/matplotlib-install-failure-on-mac-osx-10-8-mountain-lion/15098059#15098059) via [@savant42](https://twitter.com/savant42)
 
 - **Uninstall Homebrew**
   If you think you have some cruftiness with Homebrew, this Gist will completely uninstall Homebrew and any libraries it may have installed. Of course if you are using Homebrew for other things you could make a mess of your life. 
