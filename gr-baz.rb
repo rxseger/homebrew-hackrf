@@ -2,7 +2,7 @@ require 'formula'
 
 class GrBaz < Formula
   homepage 'http://wiki.spench.net/wiki/Gr-baz'
-  head 'https://github.com/balint256/gr-baz.git', :branch => "3.6"
+  head 'https://github.com/balint256/gr-baz.git'
 
   depends_on 'cmake' => :build
   depends_on 'gnuradio'
