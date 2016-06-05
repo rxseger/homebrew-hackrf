@@ -70,6 +70,17 @@ These steps have been tested on El Capitan 10.11.5 with Xcode 7.3.1. It is proba
   brew tap rxseger/homebrew-hackrf
   brew install gr-osmosdr gr-baz --HEAD
   ```
+
+**Congratulations!!**
+
+Everything should now be working. It is time to give it a try! Below are some of the programs you can try
+
+```sh
+gnuradio-companion
+osmocom_fft -a hackrf
+```
+
+### gqrx
 - If you want a graphic interface to play with your HackRF, GQRX is great
   To install it:
   
@@ -84,15 +95,17 @@ These steps have been tested on El Capitan 10.11.5 with Xcode 7.3.1. It is proba
   ```
   
   And then configure it to use the HackRF. Probably best to start the sample rate at 10e6 until you know how much your system can handle.
-  
-**Congratulations!!**
 
-Everything should now be working. It is time to give it a try! Below are some of the programs you can try
+### kalibrate
+
+To measure the HackRF's offset from a GSM reference signal, use kalibrate:
 
 ```sh
-gnuradio-companion
-osmocom_fft -a hackrf
+brew install --HEAD kalibrate-hackrf
+kal -h
 ```
+
+
 
 - **Uninstall Homebrew**
   If you think you have some cruftiness with Homebrew, this Gist will completely uninstall Homebrew and any libraries it may have installed. Of course if you are using Homebrew for other things you could make a mess of your life. 
