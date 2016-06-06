@@ -1,7 +1,7 @@
 class KalibrateHackrf < Formula
   desc "Scan for GSM base stations in a given frequency band and use those GSM base stations to calculate the local oscillator frequency offset"
   homepage "https://web.archive.org/web/20131226204943/http://thre.at/kalibrate"
-  head "git://github.com/rxseger/kalibrate-hackrf", :branch => "fixrt",
+  head "git://github.com/rxseger/kalibrate-hackrf",
     :shallow => false
 
   depends_on "fftw"
