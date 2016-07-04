@@ -6,7 +6,7 @@ class Gqrx < Formula
   depends_on 'qt'
   depends_on 'boost'
   depends_on 'gnuradio'
-  depends_on 'gr-osmosdr'
+  depends_on 'dholm/sdr/gr-osmosdr'
 
   def install
     system "qmake -set PKG_CONFIG /usr/local/bin/pkg-config"
