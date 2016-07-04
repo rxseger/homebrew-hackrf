@@ -1,12 +1,12 @@
 class Gqrx < Formula
   homepage 'https://github.com/csete/gqrx'
-  head 'https://github.com/csete/gqrx.git', :branch => 'master'
+  head 'https://github.com/Nuand/gqrx.git', :branch => 'master'
 
   depends_on 'cmake' => :build
   depends_on 'qt'
   depends_on 'boost'
   depends_on 'gnuradio'
-  depends_on 'gr-osmosdr'
+  depends_on 'rxseger/hackrf/gr-osmosdr'
 
   def install
     system "qmake -set PKG_CONFIG /usr/local/bin/pkg-config"

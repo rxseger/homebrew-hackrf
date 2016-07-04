@@ -2,8 +2,7 @@ require 'formula'
 
 class GrOsmosdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/GrOsmoSDR'
-  head 'git://git.osmocom.org/gr-osmosdr', :branch => 'master',
-    :shallow => false
+  head 'https://github.com/Nuand/gr-osmosdr.git', :branch => 'master'
 
   depends_on 'cmake' => :build
   depends_on 'gnuradio'
