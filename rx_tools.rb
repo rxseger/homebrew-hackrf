@@ -5,11 +5,11 @@ class RxTools < Formula
 
   depends_on "cmake" => :build
   depends_on "pothosware/pothos/soapysdr"
-  depends_on "pothosware/pothos/soapybladerf" => :optional
-  depends_on "pothosware/pothos/soapyhackrf" => :optional
+  depends_on "pothosware/pothos/soapybladerf"
+  depends_on "pothosware/pothos/soapyhackrf"
   depends_on "pothosware/pothos/soapysomo" => :optional
   depends_on "pothosware/pothos/soapyredpitaya" => :optional
-  depends_on "pothosware/pothos/soapyrtlsdr" => :optional
+  depends_on "pothosware/pothos/soapyrtlsdr"
   depends_on "pothosware/pothos/soapyuhd" => :optional
 
   def install
